@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.db import models
 
 
-class Category(models.Model):
+class Budget(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='categories')
     name = models.CharField(max_length=180, default='Untitled')
     description = models.TextField(blank=True, null=True)
@@ -19,7 +19,7 @@ class Category(models.Model):
         return '{}'.format(self.name)
 
 
-class Card(models.Model):
+class Transaction(models.Model):
     assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cards', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='cards')
     title = models.CharField(max_length=180, default='Untitled')
